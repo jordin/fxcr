@@ -6,6 +6,13 @@
   "mixins": [
   ],
   "client": [
+    "MixinChunkBuilderBuiltChunkRebuildTask",
+    "MixinExtChunkBuilderChunkData",
+    "MixinRenderLayer",
+    "MixinWorldRenderer",
+    "MixinExtWorldRenderer",
+    "MixinMinecraftClient",
+    "MixinChestBlockEntityRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
