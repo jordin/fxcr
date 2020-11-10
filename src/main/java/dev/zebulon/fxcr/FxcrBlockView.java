@@ -19,17 +19,19 @@ import net.minecraft.world.level.ColorResolver;
 
 public class FxcrBlockView implements BlockRenderView {
     private static final BlockState AIR = Blocks.AIR.getDefaultState();
+    private static final BlockState NOT_AIR = Blocks.STONE.getDefaultState();
+
     public BlockRenderView vanillaBlockView;
 
     @Override
     public BlockState getBlockState(BlockPos blockPos) {
         BlockState state = this.vanillaBlockView.getBlockState(blockPos);
 
-        // if (!state.isAir()) {
-        //     return ;
-        // }
+        if (state.getBlock() == Blocks.CHEST) {
+            return NOT_AIR;
+        }
 
-        return state.isAir() ? AIR : Blocks.GOLD_BLOCK.getDefaultState();
+        return state;
     }
 
     @Override
