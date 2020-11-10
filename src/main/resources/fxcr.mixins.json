@@ -12,7 +12,6 @@
     "MixinWorldRenderer",
     "MixinExtWorldRenderer",
     "MixinMinecraftClient",
-    "MixinChestBlockEntityRenderer",
     "MixinBlockEntityRenderDispatcher"
   ],
   "injectors": {
