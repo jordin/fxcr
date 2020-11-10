@@ -19,7 +19,6 @@ import net.minecraft.world.level.ColorResolver;
 
 public class FxcrBlockView implements BlockRenderView {
     private static final BlockState AIR = Blocks.AIR.getDefaultState();
-    private static final BlockState ALMOST_AIR = Blocks.OAK_FENCE.getDefaultState();
     public BlockRenderView vanillaBlockView;
 
     @Override
