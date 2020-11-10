@@ -25,7 +25,12 @@ public class FxcrBlockView implements BlockRenderView {
     @Override
     public BlockState getBlockState(BlockPos blockPos) {
         BlockState state = this.vanillaBlockView.getBlockState(blockPos);
-        return state.isAir() ? AIR : ALMOST_AIR;
+
+        // if (!state.isAir()) {
+        //     return ;
+        // }
+
+        return state.isAir() ? AIR : Blocks.GOLD_BLOCK.getDefaultState();
     }
 
     @Override

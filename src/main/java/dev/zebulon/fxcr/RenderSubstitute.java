@@ -32,6 +32,8 @@ public class RenderSubstitute {
 
     public static final FxcrBlockView BLOCK_VIEW = new FxcrBlockView();
 
+    public static BlockState[] BLOCK_STATE_CACHE = new BlockState[32];
+
     public static final RenderLayer FXCR_LAYER = RenderLayer.of("fxcr",
             VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL, VertexFormat.DrawMode.QUADS, 0x2000, true, false,
             RenderLayer.MultiPhaseParameters.builder().shadeModel(new RenderPhase.ShadeModel(true))
@@ -75,7 +77,15 @@ public class RenderSubstitute {
         Direction direction = chestState.get(Properties.HORIZONTAL_FACING);
         ChestType chestType = chestState.get(ChestBlock.CHEST_TYPE);
 
-        return FxcrMod.FAST_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
+        int index = (direction.ordinal() << 2) | chestType.ordinal();
+        BlockState cached = BLOCK_STATE_CACHE[index];
+
+        if (cached == null) {
+            BLOCK_STATE_CACHE[index] = FxcrMod.FAST_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
                 .with(ChestBlock.CHEST_TYPE, chestType);
+            cached = BLOCK_STATE_CACHE[index];
+        }
+
+        return cached;
     }
 }
