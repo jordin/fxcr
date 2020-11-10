@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "fxcr:block/fast_chest_top",
+    "front": "fxcr:block/fast_chest_single_front",
+    "side": "fxcr:block/fast_chest_side"
+  }
+}

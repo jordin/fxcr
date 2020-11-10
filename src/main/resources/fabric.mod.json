@@ -1,35 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
+  "id": "fxcr",
+  "version": "0.1.0+alpha.1",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Fast Approximate Chest Rendering",
+  "description": "Renders chests with approximate models to optimize",
   "authors": [
-    "Me!"
+    "Zebulon"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
-
+  "icon": "assets/fxcr/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "dev.zebulon.fxcr.FxcrMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "fxcr.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": "*",
-    "minecraft": "1.16.x"
+    "fabricloader": ">=0.7.6",
+    "minecraft": "*"
   },
   "suggests": {
     "flamingo": "*"
