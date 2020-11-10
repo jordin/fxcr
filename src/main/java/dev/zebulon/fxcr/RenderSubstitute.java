@@ -46,7 +46,7 @@ public class RenderSubstitute {
 
     public static void onRender(final BlockPos blockPos, final BlockState blockState,
             final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
-            final FluidState fluidState, final Random random, final MatrixStack matrixStack) {
+            final Random random, final MatrixStack matrixStack) {
         if (RenderLayers.getBlockLayer(blockState) != RenderLayer.getSolid()) {
             return;
         }

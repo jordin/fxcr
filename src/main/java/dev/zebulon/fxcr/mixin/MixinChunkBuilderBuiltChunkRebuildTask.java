@@ -33,7 +33,7 @@ public abstract class MixinChunkBuilderBuiltChunkRebuildTask {
                           BlockRenderManager blockRenderManager, Iterator var15, BlockPos blockPos3, BlockState blockState,
                           FluidState fluidState) {
         if (!blockState.isAir() && blockState.getBlock() == Blocks.CHEST) {
-            RenderSubstitute.onRender(blockPos3, blockState, blockBufferBuilderStorage, chunkData, fluidState, random, matrixStack);
+            RenderSubstitute.onRender(blockPos3, blockState, blockBufferBuilderStorage, chunkData, random, matrixStack);
         }
     }
 }
