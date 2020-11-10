@@ -15,7 +15,6 @@ import net.minecraft.client.util.math.MatrixStack;
 
 @Mixin(WorldRenderer.class)
 public class MixinWorldRenderer {
-
     @Shadow
     @Final
     private MinecraftClient client;

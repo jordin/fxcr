@@ -12,8 +12,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 
 @Mixin(BlockEntityRendererFactories.class)
 public class MixinBlockEntityRendererFactories {
-
-    @Inject(method = "Lnet/minecraft/client/render/block/entity/BlockEntityRendererFactories;register(Lnet/minecraft/block/entity/BlockEntityType;Lnet/minecraft/client/render/block/entity/BlockEntityRendererFactory;)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "register(Lnet/minecraft/block/entity/BlockEntityType;Lnet/minecraft/client/render/block/entity/BlockEntityRendererFactory;)V", at = @At("HEAD"), cancellable = true)
     private static <T extends BlockEntity> void register(BlockEntityType<? extends T> type,
             BlockEntityRendererFactory<T> factory, CallbackInfo callbackInfo) {
         if (type == BlockEntityType.CHEST) {

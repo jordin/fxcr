@@ -13,7 +13,7 @@ import net.minecraft.client.util.math.MatrixStack;
 
 @Mixin(BlockEntityRenderDispatcher.class)
 public class MixinBlockEntityRenderDispatcher {
-    @Inject(method = "Lnet/minecraft/client/render/block/entity/BlockEntityRenderDispatcher;renderEntity(Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)Z", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "renderEntity(Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)Z", at = @At("HEAD"), cancellable = true)
     public <E extends BlockEntity> void renderEntity(E entity, MatrixStack matrix,
             VertexConsumerProvider vertexConsumerProvider, int light, int overlay, CallbackInfoReturnable<Boolean> callbackInfo) {
         if (entity.hasWorld() && entity.getType() == BlockEntityType.CHEST) {
