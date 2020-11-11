@@ -1,48 +1,48 @@
 {
     "variants": {
         "facing=north,type=single": {
-            "model": "fxcr:block/fast_chest_block"
+            "model": "fxcr:block/fast_chest_model"
         },
         "facing=east,type=single": {
-            "model": "fxcr:block/fast_chest_block",
+            "model": "fxcr:block/fast_chest_model",
             "y": 90
         },
         "facing=south,type=single": {
-            "model": "fxcr:block/fast_chest_block",
+            "model": "fxcr:block/fast_chest_model",
             "y": 180
         },
         "facing=west,type=single": {
-            "model": "fxcr:block/fast_chest_block",
+            "model": "fxcr:block/fast_chest_model",
             "y": 270
         },
         "facing=north,type=left": {
-            "model": "fxcr:block/fast_chest_left"
+            "model": "fxcr:block/fast_chest_left_model"
         },
         "facing=east,type=left": {
-            "model": "fxcr:block/fast_chest_left",
+            "model": "fxcr:block/fast_chest_left_model",
             "y": 90
         },
         "facing=south,type=left": {
-            "model": "fxcr:block/fast_chest_left",
+            "model": "fxcr:block/fast_chest_left_model",
             "y": 180
         },
         "facing=west,type=left": {
-            "model": "fxcr:block/fast_chest_left",
+            "model": "fxcr:block/fast_chest_left_model",
             "y": 270
         },
         "facing=north,type=right": {
-            "model": "fxcr:block/fast_chest_right"
+            "model": "fxcr:block/fast_chest_right_model"
         },
         "facing=east,type=right": {
-            "model": "fxcr:block/fast_chest_right",
+            "model": "fxcr:block/fast_chest_right_model",
             "y": 90
         },
         "facing=south,type=right": {
-            "model": "fxcr:block/fast_chest_right",
+            "model": "fxcr:block/fast_chest_right_model",
             "y": 180
         },
         "facing=west,type=right": {
-            "model": "fxcr:block/fast_chest_right",
+            "model": "fxcr:block/fast_chest_right_model",
             "y": 270
         }
     }
