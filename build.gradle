@@ -75,7 +75,7 @@ publishing {
             }
 
 			def mavenUrl = System.env["MAVEN_URL"]
-			url "http://${mavenUrl}/repository/maven-releases/"
+			url "https://${mavenUrl}/repository/maven-releases/"
         }
 	}
 }
