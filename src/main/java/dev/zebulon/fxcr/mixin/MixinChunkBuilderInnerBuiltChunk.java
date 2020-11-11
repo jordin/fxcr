@@ -21,8 +21,8 @@ public class MixinChunkBuilderInnerBuiltChunk {
     @Final
     private Map<RenderLayer, VertexBuffer> buffers;
 
-    @Inject(method = "Lnet/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk;<init>()V", at = @At("RETURN"))
-    public void init(CallbackInfo callbackInfo) {
+    @Inject(method = "<init>()V", at = @At("RETURN"))
+    public void init(ChunkBuilder outer, CallbackInfo ci) {
         buffers.put(RenderSubstitute.FXCR_LAYER, new VertexBuffer());
     }
 }
