@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import dev.zebulon.fxcr.FxcrMod;
 import dev.zebulon.fxcr.RenderSubstitute;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.RenderLayer;
@@ -23,6 +24,10 @@ public class MixinBlockBufferBuilderStorage {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void init(CallbackInfo callbackInfo) {
+        if (!FxcrMod.ENABLED) {
+            return;
+        }
+
         RenderLayer renderLayer = RenderSubstitute.FXCR_LAYER;
         BufferBuilder builder = new BufferBuilder(renderLayer.getExpectedBufferSize());
         builders.put(renderLayer, builder);
