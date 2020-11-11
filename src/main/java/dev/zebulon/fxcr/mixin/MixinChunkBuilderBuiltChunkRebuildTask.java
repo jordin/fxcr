@@ -32,7 +32,8 @@ public abstract class MixinChunkBuilderBuiltChunkRebuildTask {
                           ChunkRendererRegion chunkRendererRegion, MatrixStack matrixStack, Random random,
                           BlockRenderManager blockRenderManager, Iterator var15, BlockPos blockPos3, BlockState blockState,
                           FluidState fluidState) {
-        if (!blockState.isAir() && blockState.getBlock() == Blocks.CHEST) {
+        Block block = blockState.getBlock();
+        if (!blockState.isAir() && (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST)) {
             RenderSubstitute.onRender(blockPos3, blockState, blockBufferBuilderStorage, chunkData, random, matrixStack);
         }
     }

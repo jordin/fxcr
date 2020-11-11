@@ -15,7 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinBlockEntityRenderDispatcher {
     @Inject(method = "get(Lnet/minecraft/block/entity/BlockEntity;)Lnet/minecraft/client/render/block/entity/BlockEntityRenderer;", at = @At("HEAD"), cancellable = true)
     public <E extends BlockEntity> void renderEntity(E blockEntity, CallbackInfoReturnable<@Nullable BlockEntityRenderer<E>> cir) {
-        if (blockEntity.hasWorld() && blockEntity.getType() == BlockEntityType.CHEST) {
+        BlockEntityType<?> type = blockEntity.getType();
+        boolean invalidType = type == BlockEntityType.CHEST || type == BlockEntityType.TRAPPED_CHEST;
+        if (blockEntity.hasWorld() && invalidType) {
             cir.setReturnValue(null);
         }
     }

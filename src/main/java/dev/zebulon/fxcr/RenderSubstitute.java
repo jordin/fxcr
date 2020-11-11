@@ -7,7 +7,9 @@ import java.util.Set;
 import com.google.common.collect.ImmutableList;
 
 import dev.zebulon.fxcr.mixin.MixinExtChunkBuilderChunkData;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.enums.ChestType;
@@ -31,7 +33,7 @@ public class RenderSubstitute {
 
     public static final FxcrBlockView BLOCK_VIEW = new FxcrBlockView();
 
-    public static BlockState[] BLOCK_STATE_CACHE = new BlockState[32];
+    public static BlockState[] BLOCK_STATE_CACHE = new BlockState[64];
 
     public static final RenderLayer FXCR_LAYER = RenderLayer.of("fxcr",
             VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL, VertexFormat.DrawMode.QUADS, 0x2000, true, false,
@@ -42,6 +44,8 @@ public class RenderSubstitute {
     public static List<RenderLayer> BLOCK_LAYERS = ImmutableList.of(FXCR_LAYER, RenderLayer.getSolid(),
             RenderLayer.getCutoutMipped(), RenderLayer.getCutout(), RenderLayer.getTranslucent(),
             RenderLayer.getTripwire());
+
+    private static final int TRAPPED_CHEST_FLAG = 1 << 5;
 
     public static void onRender(final BlockPos blockPos, final BlockState blockState,
             final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
@@ -73,15 +77,27 @@ public class RenderSubstitute {
     }
 
     private static BlockState transformBlockState(BlockState chestState) {
+        Block block = chestState.getBlock();
+
         Direction direction = chestState.get(Properties.HORIZONTAL_FACING);
         ChestType chestType = chestState.get(ChestBlock.CHEST_TYPE);
 
         int index = (direction.ordinal() << 2) | chestType.ordinal();
+
+        // Add a trapped flag if it's a traped chest.
+        index |= block == Blocks.TRAPPED_CHEST ? TRAPPED_CHEST_FLAG : 0;
+
         BlockState cached = BLOCK_STATE_CACHE[index];
 
         if (cached == null) {
-            BLOCK_STATE_CACHE[index] = FxcrMod.FAST_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
-                .with(ChestBlock.CHEST_TYPE, chestType);
+            if ((index & TRAPPED_CHEST_FLAG) == 0) {
+                BLOCK_STATE_CACHE[index] = FxcrMod.FAST_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
+                    .with(ChestBlock.CHEST_TYPE, chestType);
+            } else {
+                BLOCK_STATE_CACHE[index] = FxcrMod.FAST_TRAPPED_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
+                    .with(ChestBlock.CHEST_TYPE, chestType);
+            }
+            
             cached = BLOCK_STATE_CACHE[index];
         }
 
