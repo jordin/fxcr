@@ -6,7 +6,8 @@
   "name": "Fast Approximate Chest Rendering",
   "description": "Renders chests with approximate models to optimize",
   "authors": [
-    "Zebulon"
+    "Zebulon",
+    "Jordin"
   ],
   "contact": {
   },

@@ -11,7 +11,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.Direction;
 
 public class FastChestBlock extends HorizontalFacingBlock {
-
 	public static final EnumProperty<ChestType> CHEST_TYPE = Properties.CHEST_TYPE;
 
 	public FastChestBlock(Settings settings) {
@@ -27,6 +26,6 @@ public class FastChestBlock extends HorizontalFacingBlock {
 	}
 
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState) this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(CHEST_TYPE, ChestType.SINGLE);
+		return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(CHEST_TYPE, ChestType.SINGLE);
 	}
 }

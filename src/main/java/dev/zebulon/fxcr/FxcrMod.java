@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class FxcrMod implements ModInitializer {
-
 	public static final boolean ENABLED = System.getProperty("FXCR.DISABLED") == null;
 
 	public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
