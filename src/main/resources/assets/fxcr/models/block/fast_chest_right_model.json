@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
 	"textures": {
 		"0": "fxcr:block/fast_chest_right_front",
 		"1": "fxcr:block/fast_chest_right_back",
