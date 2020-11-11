@@ -68,5 +68,14 @@ publishing {
 	repositories {
 		// uncomment to publish to the local maven
 		// mavenLocal()
+		maven {
+            credentials {
+                username System.env["MAVEN_USERNAME"]
+                password System.env["MAVEN_PASSWORD"]
+            }
+
+			def mavenUrl = System.env["MAVEN_URL"]
+			url "http://${mavenUrl}/repository/maven-releases/"
+        }
 	}
 }
