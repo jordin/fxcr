@@ -13,7 +13,8 @@
     "MixinWorldRenderer",
     "MixinExtWorldRenderer",
     "MixinMinecraftClient",
-    "MixinBlockEntityRenderDispatcher"
+    "MixinBlockEntityRenderDispatcher",
+    "MixinVideoOptionsScreen"
   ],
   "injectors": {
     "defaultRequire": 1
