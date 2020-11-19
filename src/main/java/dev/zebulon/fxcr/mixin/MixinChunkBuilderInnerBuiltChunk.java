@@ -16,7 +16,6 @@ import net.minecraft.client.render.chunk.ChunkBuilder;
 
 @Mixin(ChunkBuilder.BuiltChunk.class)
 public class MixinChunkBuilderInnerBuiltChunk {
-
     @Shadow
     @Final
     private Map<RenderLayer, VertexBuffer> buffers;

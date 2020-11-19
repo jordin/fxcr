@@ -12,7 +12,6 @@ import net.minecraft.nbt.CompoundTag;
 
 @Mixin(GameOptions.class)
 public abstract class MixinGameOptions {
-
     @Redirect(method = "write()V", at = @At(value = "INVOKE", target = "Ljava/io/PrintWriter;println(Ljava/lang/String;)V", ordinal = 0))
     private void onWritePrintLn(PrintWriter printWriter, String x) {
         printWriter.println("fxcrEnabled:" + FxcrMod.enabled);

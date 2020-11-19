@@ -9,7 +9,6 @@ import net.minecraft.client.options.Option;
 
 @Mixin(VideoOptionsScreen.class)
 public class MixinVideoOptionsScreen {
-
     @Shadow
     public static Option[] OPTIONS;
 

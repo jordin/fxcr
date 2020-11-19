@@ -1,10 +1,7 @@
 package dev.zebulon.fxcr;
 
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
-import com.google.common.collect.ImmutableList;
 
 import dev.zebulon.fxcr.mixin.MixinExtChunkBuilderChunkData;
 import net.minecraft.block.Block;
@@ -30,7 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class RenderSubstitute {
-
     public static final FxcrBlockView BLOCK_VIEW = new FxcrBlockView();
 
     public static BlockState[] BLOCK_STATE_CACHE = new BlockState[64];
