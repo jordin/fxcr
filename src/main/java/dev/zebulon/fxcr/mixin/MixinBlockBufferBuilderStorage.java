@@ -24,6 +24,6 @@ public class MixinBlockBufferBuilderStorage {
     public void init(CallbackInfo callbackInfo) {
         RenderLayer renderLayer = RenderSubstitute.FXCR_LAYER;
         BufferBuilder builder = new BufferBuilder(renderLayer.getExpectedBufferSize());
-        builders.put(renderLayer, builder);
+        this.builders.put(renderLayer, builder);
     }
 }

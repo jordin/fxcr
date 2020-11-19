@@ -16,7 +16,7 @@ public class FastTrappedChestBlock extends HorizontalFacingBlock {
 
 	public FastTrappedChestBlock(Settings settings) {
 		super(settings);
-		setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH)
+		this.setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH)
 				.with(CHEST_TYPE, ChestType.SINGLE));
 	}
 
