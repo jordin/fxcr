@@ -27,6 +27,6 @@ public class FastTrappedChestBlock extends HorizontalFacingBlock {
 	}
 
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return (BlockState) this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(CHEST_TYPE, ChestType.SINGLE);
+		return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(CHEST_TYPE, ChestType.SINGLE);
 	}
 }
