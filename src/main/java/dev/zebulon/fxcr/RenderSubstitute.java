@@ -78,7 +78,7 @@ public class RenderSubstitute {
 
         int index = (direction.ordinal() << 2) | chestType.ordinal();
 
-        // Add a trapped flag if it's a traped chest.
+        // Add a trapped flag if it's a trapped chest.
         index |= block == Blocks.TRAPPED_CHEST ? TRAPPED_CHEST_FLAG : 0;
 
         BlockState cached = BLOCK_STATE_CACHE[index];
