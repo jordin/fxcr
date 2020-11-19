@@ -41,10 +41,6 @@ public class RenderSubstitute {
                     .lightmap(new RenderPhase.Lightmap(true)).cull(new RenderPhase.Cull(false))
                     .texture(new RenderPhase.Texture(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, false, true)).build(true));
 
-    public static List<RenderLayer> BLOCK_LAYERS = ImmutableList.of(FXCR_LAYER, RenderLayer.getSolid(),
-            RenderLayer.getCutoutMipped(), RenderLayer.getCutout(), RenderLayer.getTranslucent(),
-            RenderLayer.getTripwire());
-
     private static final int TRAPPED_CHEST_FLAG = 1 << 5;
 
     public static void onRender(final BlockPos blockPos, final BlockState blockState,

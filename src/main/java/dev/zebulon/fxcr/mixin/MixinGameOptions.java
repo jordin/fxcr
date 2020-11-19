@@ -21,8 +21,7 @@ public abstract class MixinGameOptions {
 
     @Redirect(method = "load()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;getString(Ljava/lang/String;)Ljava/lang/String;", ordinal = 1))
     private String onLoadGetString(CompoundTag compoundTag, String key) {
-        boolean fxcrEnabled = compoundTag.getBoolean("fxcrEnabled");
-        FxcrMod.enabled = fxcrEnabled;
+        FxcrMod.enabled = compoundTag.getBoolean("fxcrEnabled");
 
         return compoundTag.getString(key);
     }
