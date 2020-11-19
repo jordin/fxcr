@@ -24,6 +24,7 @@ import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.Direction;
 
 public class RenderSubstitute {
@@ -42,6 +43,7 @@ public class RenderSubstitute {
     public static void onRender(final BlockPos blockPos, final BlockState blockState,
             final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
             final Random random, final MatrixStack matrixStack) {
+        // FIXME: do we need this check? we only call this function on chests and trapped chests
         if (RenderLayers.getBlockLayer(blockState) != RenderLayer.getSolid()) {
             return;
         }
@@ -58,9 +60,9 @@ public class RenderSubstitute {
             bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL);
         }
 
-        final int x = blockPos.getX() & 0xF;
-        final int y = blockPos.getY() & 0xF;
-        final int z = blockPos.getZ() & 0xF;
+        final int x =  ChunkSectionPos.getLocalCoord(blockPos.getX());
+        final int y =  ChunkSectionPos.getLocalCoord(blockPos.getY());
+        final int z =  ChunkSectionPos.getLocalCoord(blockPos.getZ());
 
         matrixStack.translate(x, y, z);
         blockRendererDispatcher.renderBlock(transformBlockState(blockState), blockPos, BLOCK_VIEW, matrixStack,
