@@ -16,9 +16,7 @@ public class MixinVideoOptionsScreen {
         Option[] oldOptions = OPTIONS;
         OPTIONS = new Option[oldOptions.length + 1];
 
-        for (int i = 0; i < oldOptions.length; i++) {
-            OPTIONS[i] = oldOptions[i];
-        }
+        System.arraycopy(oldOptions, 0, OPTIONS, 0, oldOptions.length);
 
         OPTIONS[OPTIONS.length - 1] = FxcrMod.FXCR_ENABLED_OPTION;
     }
