@@ -22,7 +22,7 @@ public class MixinWorldRenderer {
 
     @Inject(method = "renderLayer(Lnet/minecraft/client/render/RenderLayer;Lnet/minecraft/client/util/math/MatrixStack;DDD)V", at = @At("HEAD"), cancellable = true)
     private void onRenderLayer(final RenderLayer renderLayer, final MatrixStack matrixStack, final double x, final double y, final double z, final CallbackInfo ci) {
-        if (FxcrMod.ENABLED && renderLayer == RenderLayer.getSolid()) {
+        if (FxcrMod.enabled && renderLayer == RenderLayer.getSolid()) {
             ((MixinExtWorldRenderer) client.worldRenderer).invokeRenderLayerFxcr(RenderSubstitute.FXCR_LAYER, matrixStack, x, y, z);
         }
     }

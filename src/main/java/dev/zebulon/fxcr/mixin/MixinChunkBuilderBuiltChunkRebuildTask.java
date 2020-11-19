@@ -34,7 +34,7 @@ public abstract class MixinChunkBuilderBuiltChunkRebuildTask {
                           BlockRenderManager blockRenderManager, Iterator var15, BlockPos blockPos3, BlockState blockState,
                           FluidState fluidState) {
         Block block = blockState.getBlock();
-        if (FxcrMod.ENABLED && !blockState.isAir() && (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST)) {
+        if (FxcrMod.enabled && !blockState.isAir() && (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST)) {
             RenderSubstitute.onRender(blockPos3, blockState, blockBufferBuilderStorage, chunkData, random, matrixStack);
         }
     }
