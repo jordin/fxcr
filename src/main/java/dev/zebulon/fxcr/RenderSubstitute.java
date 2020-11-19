@@ -60,9 +60,9 @@ public class RenderSubstitute {
             bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL);
         }
 
-        final int x =  ChunkSectionPos.getLocalCoord(blockPos.getX());
-        final int y =  ChunkSectionPos.getLocalCoord(blockPos.getY());
-        final int z =  ChunkSectionPos.getLocalCoord(blockPos.getZ());
+        final int x = ChunkSectionPos.getLocalCoord(blockPos.getX());
+        final int y = ChunkSectionPos.getLocalCoord(blockPos.getY());
+        final int z = ChunkSectionPos.getLocalCoord(blockPos.getZ());
 
         matrixStack.translate(x, y, z);
         blockRendererDispatcher.renderBlock(transformBlockState(blockState), blockPos, BLOCK_VIEW, matrixStack,
