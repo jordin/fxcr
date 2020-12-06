@@ -1,7 +1,9 @@
 package dev.zebulon.fxcr.mixin;
 
-import java.util.Map;
-
+import dev.zebulon.fxcr.RenderSubstitute;
+import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.chunk.BlockBufferBuilderStorage;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,10 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import dev.zebulon.fxcr.RenderSubstitute;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.chunk.BlockBufferBuilderStorage;
+import java.util.Map;
 
 @Mixin(BlockBufferBuilderStorage.class)
 public abstract class MixinBlockBufferBuilderStorage {

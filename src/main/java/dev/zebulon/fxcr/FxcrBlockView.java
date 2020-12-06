@@ -1,7 +1,5 @@
 package dev.zebulon.fxcr;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -16,6 +14,7 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.chunk.light.LightingProvider;
 import net.minecraft.world.level.ColorResolver;
+import org.jetbrains.annotations.Nullable;
 
 public class FxcrBlockView implements BlockRenderView {
     private static final BlockState NOT_AIR = Blocks.STONE.getDefaultState();

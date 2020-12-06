@@ -1,13 +1,12 @@
 package dev.zebulon.fxcr.mixin;
 
+import dev.zebulon.fxcr.RenderSubstitute;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import dev.zebulon.fxcr.RenderSubstitute;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
 
 @Mixin(MinecraftClient.class)
 public abstract class MixinMinecraftClient {

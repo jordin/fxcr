@@ -1,13 +1,12 @@
 package dev.zebulon.fxcr.mixin;
 
+import dev.zebulon.fxcr.FxcrMod;
+import net.minecraft.client.gui.screen.VideoOptionsScreen;
+import net.minecraft.client.options.Option;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
-
-import dev.zebulon.fxcr.FxcrMod;
-import net.minecraft.client.gui.screen.VideoOptionsScreen;
-import net.minecraft.client.options.Option;
 
 @Mixin(VideoOptionsScreen.class)
 public abstract class MixinVideoOptionsScreen {
