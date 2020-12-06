@@ -11,7 +11,6 @@
     "MixinBlockBufferBuilderStorage",
     "MixinChunkBuilderInnerBuiltChunk",
     "MixinWorldRenderer",
-    "MixinExtWorldRenderer",
     "MixinMinecraftClient",
     "MixinBlockEntityRenderDispatcher",
     "MixinVideoOptionsScreen",
