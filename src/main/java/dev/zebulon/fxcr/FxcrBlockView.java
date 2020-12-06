@@ -65,11 +65,6 @@ public class FxcrBlockView implements BlockRenderView {
     }
 
     @Override
-    public int getHeight() {
-        return this.vanillaBlockView.getHeight();
-    }
-
-    @Override
     public BlockHitResult raycast(RaycastContext context) {
         return this.vanillaBlockView.raycast(context);
     }

@@ -12,28 +12,28 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class FxcrMod implements ModInitializer {
-	public static boolean ENABLED = System.getProperty("FXCR.DISABLED") == null;
+    public static boolean ENABLED = System.getProperty("FXCR.DISABLED") == null;
 
-	// Eclipse shows resource leak warnings on all calls for getInstance, ugh
-	@SuppressWarnings("all")
-	public static final Option FXCR_ENABLED_OPTION = CyclingOption.method_32522("fxcr.enabled", (gameOptions) -> {
-		return ENABLED;
-	 }, (gameOptions, option, boolean_) -> {
-		ENABLED = !ENABLED;
+    // Eclipse shows resource leak warnings on all calls for getInstance, ugh
+    @SuppressWarnings("all")
+    public static final Option FXCR_ENABLED_OPTION = CyclingOption.create("fxcr.enabled", (gameOptions) -> {
+        return ENABLED;
+     }, (gameOptions, option, boolean_) -> {
+        ENABLED = !ENABLED;
 
-		if (MinecraftClient.getInstance().world == null) {
-			return;
-		}
+        if (MinecraftClient.getInstance().world == null) {
+            return;
+        }
 
-		MinecraftClient.getInstance().worldRenderer.reload();
-	 });
+        MinecraftClient.getInstance().worldRenderer.reload();
+     });
 
-	public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
-	public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+    public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+    public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
 
-	@Override
-	public void onInitialize() {
-		Registry.register(Registry.BLOCK, new Identifier("fxcr", "fast_chest"), FAST_CHEST_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier("fxcr", "fast_trapped_chest"), FAST_TRAPPED_CHEST_BLOCK);
-	}
+    @Override
+    public void onInitialize() {
+        Registry.register(Registry.BLOCK, new Identifier("fxcr", "fast_chest"), FAST_CHEST_BLOCK);
+        Registry.register(Registry.BLOCK, new Identifier("fxcr", "fast_trapped_chest"), FAST_TRAPPED_CHEST_BLOCK);
+    }
 }

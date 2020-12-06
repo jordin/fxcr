@@ -11,21 +11,21 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.Direction;
 
 public class FastChestBlock extends HorizontalFacingBlock {
-	public static final EnumProperty<ChestType> CHEST_TYPE = Properties.CHEST_TYPE;
+    public static final EnumProperty<ChestType> CHEST_TYPE = Properties.CHEST_TYPE;
 
-	public FastChestBlock(Settings settings) {
-		super(settings);
-		setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH)
-				.with(CHEST_TYPE, ChestType.SINGLE));
-	}
+    public FastChestBlock(Settings settings) {
+        super(settings);
+        setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH)
+                .with(CHEST_TYPE, ChestType.SINGLE));
+    }
 
-	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
-		stateManager.add(Properties.HORIZONTAL_FACING);
-		stateManager.add(Properties.CHEST_TYPE);
-	}
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+        stateManager.add(Properties.HORIZONTAL_FACING);
+        stateManager.add(Properties.CHEST_TYPE);
+    }
 
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(CHEST_TYPE, ChestType.SINGLE);
-	}
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(CHEST_TYPE, ChestType.SINGLE);
+    }
 }
