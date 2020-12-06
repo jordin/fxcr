@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class FxcrMod implements ModInitializer {
-    public static boolean enabled = System.getProperty("FXCR.DISABLED") == null;
+    public static boolean enabled = true;
 
     // Eclipse shows resource leak warnings on all calls for getInstance, ugh
     @SuppressWarnings("all")
