@@ -2,6 +2,7 @@ package dev.zebulon.fxcr.mixin;
 
 import java.io.PrintWriter;
 
+import io.netty.util.internal.StringUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,9 +25,12 @@ public abstract class MixinGameOptions {
         printWriter.println(x);
     }
 
+    // FIXME: this is pointlessly called a lot of times in a loop
     @Redirect(method = "load()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;getString(Ljava/lang/String;)Ljava/lang/String;", ordinal = 1))
     private String onLoadGetString(CompoundTag compoundTag, String key) {
-        FxcrMod.enabled = isTrue(compoundTag.getString("fxcrEnabled"));
+        String enabledStr = compoundTag.getString("fxcrEnabled");
+
+        FxcrMod.enabled = StringUtil.isNullOrEmpty(enabledStr) || isTrue(enabledStr);
 
         return compoundTag.getString(key);
     }
