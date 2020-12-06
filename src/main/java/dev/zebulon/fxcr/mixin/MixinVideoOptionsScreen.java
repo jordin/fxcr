@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screen.VideoOptionsScreen;
 import net.minecraft.client.options.Option;
 
 @Mixin(VideoOptionsScreen.class)
-public class MixinVideoOptionsScreen {
+public abstract class MixinVideoOptionsScreen {
     @Mutable
     @Final
     @Shadow

@@ -10,7 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 
 @Mixin(MinecraftClient.class)
-public class MixinMinecraftClient {
+public abstract class MixinMinecraftClient {
     @Inject(method = "setWorld(Lnet/minecraft/client/world/ClientWorld;)V", at = @At("RETURN"))
     private void onSetWorld(final ClientWorld clientWorld, final CallbackInfo ci) {
         RenderSubstitute.BLOCK_VIEW.vanillaBlockView = clientWorld;

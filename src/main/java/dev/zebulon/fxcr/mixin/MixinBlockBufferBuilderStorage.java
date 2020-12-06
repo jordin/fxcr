@@ -15,7 +15,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.chunk.BlockBufferBuilderStorage;
 
 @Mixin(BlockBufferBuilderStorage.class)
-public class MixinBlockBufferBuilderStorage {
+public abstract class MixinBlockBufferBuilderStorage {
     @Shadow
     @Final
     private Map<RenderLayer, BufferBuilder> builders;

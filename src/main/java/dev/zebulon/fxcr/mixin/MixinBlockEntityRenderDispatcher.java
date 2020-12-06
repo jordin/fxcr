@@ -13,7 +13,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 
 @Mixin(BlockEntityRenderDispatcher.class)
-public class MixinBlockEntityRenderDispatcher {
+public abstract class MixinBlockEntityRenderDispatcher {
     @Inject(method = "get(Lnet/minecraft/block/entity/BlockEntity;)Lnet/minecraft/client/render/block/entity/BlockEntityRenderer;", at = @At("HEAD"), cancellable = true)
     public <E extends BlockEntity> void renderEntity(E blockEntity, CallbackInfoReturnable<@Nullable BlockEntityRenderer<E>> cir) {
         BlockEntityType<?> type = blockEntity.getType();
