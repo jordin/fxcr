@@ -9,7 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 
 @Mixin(WorldRenderer.class)
 public interface MixinExtWorldRenderer {
-    @Invoker
-    void invokeRenderLayer(final RenderLayer renderLayer, final MatrixStack matrixStack, final double x, final double y,
-            final double z);
+    @Invoker("renderLayer")
+    void invokeRenderLayerFxcr(final RenderLayer renderLayer, final MatrixStack matrixStack, final double x, final double y,
+                               final double z);
 }

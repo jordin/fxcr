@@ -1,6 +1,8 @@
 package dev.zebulon.fxcr.mixin;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 
 import dev.zebulon.fxcr.FxcrMod;
@@ -9,17 +11,16 @@ import net.minecraft.client.options.Option;
 
 @Mixin(VideoOptionsScreen.class)
 public class MixinVideoOptionsScreen {
-
+    @Mutable
+    @Final
     @Shadow
-    public static Option[] OPTIONS;
+    private static Option[] OPTIONS;
 
     static {
         Option[] oldOptions = OPTIONS;
         OPTIONS = new Option[oldOptions.length + 1];
 
-        for (int i = 0; i < oldOptions.length; i++) {
-            OPTIONS[i] = oldOptions[i];
-        }
+        System.arraycopy(oldOptions, 0, OPTIONS, 0, oldOptions.length);
 
         OPTIONS[OPTIONS.length - 1] = FxcrMod.FXCR_ENABLED_OPTION;
     }

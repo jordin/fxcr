@@ -16,13 +16,12 @@ import net.minecraft.client.render.chunk.ChunkBuilder;
 
 @Mixin(ChunkBuilder.BuiltChunk.class)
 public class MixinChunkBuilderInnerBuiltChunk {
-
     @Shadow
     @Final
     private Map<RenderLayer, VertexBuffer> buffers;
 
     @Inject(method = "<init>()V", at = @At("RETURN"))
     public void init(ChunkBuilder outer, CallbackInfo ci) {
-        buffers.put(RenderSubstitute.FXCR_LAYER, new VertexBuffer());
+        this.buffers.put(RenderSubstitute.FXCR_LAYER, new VertexBuffer());
     }
 }

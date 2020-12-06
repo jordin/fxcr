@@ -18,7 +18,7 @@ public class MixinBlockEntityRenderDispatcher {
     public <E extends BlockEntity> void renderEntity(E blockEntity, CallbackInfoReturnable<@Nullable BlockEntityRenderer<E>> cir) {
         BlockEntityType<?> type = blockEntity.getType();
         boolean invalidType = type == BlockEntityType.CHEST || type == BlockEntityType.TRAPPED_CHEST;
-        if (FxcrMod.ENABLED && blockEntity.hasWorld() && invalidType) {
+        if (FxcrMod.enabled && blockEntity.hasWorld() && invalidType) {
             cir.setReturnValue(null);
         }
     }

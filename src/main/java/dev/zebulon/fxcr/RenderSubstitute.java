@@ -1,10 +1,7 @@
 package dev.zebulon.fxcr;
 
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
-import com.google.common.collect.ImmutableList;
 
 import dev.zebulon.fxcr.mixin.MixinExtChunkBuilderChunkData;
 import net.minecraft.block.Block;
@@ -27,10 +24,10 @@ import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.Direction;
 
 public class RenderSubstitute {
-
     public static final FxcrBlockView BLOCK_VIEW = new FxcrBlockView();
 
     public static BlockState[] BLOCK_STATE_CACHE = new BlockState[64];
@@ -41,15 +38,12 @@ public class RenderSubstitute {
                     .lightmap(new RenderPhase.Lightmap(true)).cull(new RenderPhase.Cull(false))
                     .texture(new RenderPhase.Texture(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, false, true)).build(true));
 
-    public static List<RenderLayer> BLOCK_LAYERS = ImmutableList.of(FXCR_LAYER, RenderLayer.getSolid(),
-            RenderLayer.getCutoutMipped(), RenderLayer.getCutout(), RenderLayer.getTranslucent(),
-            RenderLayer.getTripwire());
-
     private static final int TRAPPED_CHEST_FLAG = 1 << 5;
 
     public static void onRender(final BlockPos blockPos, final BlockState blockState,
-            final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
-            final Random random, final MatrixStack matrixStack) {
+                                final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
+                                final Random random, final MatrixStack matrixStack) {
+        // FIXME: do we need this check? we only call this function on chests and trapped chests
         if (RenderLayers.getBlockLayer(blockState) != RenderLayer.getSolid()) {
             return;
         }
@@ -66,9 +60,9 @@ public class RenderSubstitute {
             bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL);
         }
 
-        final int x = blockPos.getX() & 0xF;
-        final int y = blockPos.getY() & 0xF;
-        final int z = blockPos.getZ() & 0xF;
+        final int x = ChunkSectionPos.getLocalCoord(blockPos.getX());
+        final int y = ChunkSectionPos.getLocalCoord(blockPos.getY());
+        final int z = ChunkSectionPos.getLocalCoord(blockPos.getZ());
 
         matrixStack.translate(x, y, z);
         blockRendererDispatcher.renderBlock(transformBlockState(blockState), blockPos, BLOCK_VIEW, matrixStack,
@@ -84,7 +78,7 @@ public class RenderSubstitute {
 
         int index = (direction.ordinal() << 2) | chestType.ordinal();
 
-        // Add a trapped flag if it's a traped chest.
+        // Add a trapped flag if it's a trapped chest.
         index |= block == Blocks.TRAPPED_CHEST ? TRAPPED_CHEST_FLAG : 0;
 
         BlockState cached = BLOCK_STATE_CACHE[index];
@@ -92,12 +86,12 @@ public class RenderSubstitute {
         if (cached == null) {
             if ((index & TRAPPED_CHEST_FLAG) == 0) {
                 BLOCK_STATE_CACHE[index] = FxcrMod.FAST_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
-                    .with(ChestBlock.CHEST_TYPE, chestType);
+                        .with(ChestBlock.CHEST_TYPE, chestType);
             } else {
                 BLOCK_STATE_CACHE[index] = FxcrMod.FAST_TRAPPED_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
-                    .with(ChestBlock.CHEST_TYPE, chestType);
+                        .with(ChestBlock.CHEST_TYPE, chestType);
             }
-            
+
             cached = BLOCK_STATE_CACHE[index];
         }
 

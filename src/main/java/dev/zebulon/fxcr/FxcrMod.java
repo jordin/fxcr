@@ -12,21 +12,21 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class FxcrMod implements ModInitializer {
-    public static boolean ENABLED = System.getProperty("FXCR.DISABLED") == null;
+    public static boolean enabled = System.getProperty("FXCR.DISABLED") == null;
 
     // Eclipse shows resource leak warnings on all calls for getInstance, ugh
     @SuppressWarnings("all")
     public static final Option FXCR_ENABLED_OPTION = CyclingOption.create("fxcr.enabled", (gameOptions) -> {
-        return ENABLED;
-     }, (gameOptions, option, boolean_) -> {
-        ENABLED = !ENABLED;
+        return enabled;
+    }, (gameOptions, option, boolean_) -> {
+        enabled = !enabled;
 
         if (MinecraftClient.getInstance().world == null) {
             return;
         }
 
         MinecraftClient.getInstance().worldRenderer.reload();
-     });
+    });
 
     public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
     public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));

@@ -16,7 +16,6 @@ import net.minecraft.client.render.chunk.BlockBufferBuilderStorage;
 
 @Mixin(BlockBufferBuilderStorage.class)
 public class MixinBlockBufferBuilderStorage {
-
     @Shadow
     @Final
     private Map<RenderLayer, BufferBuilder> builders;
@@ -25,6 +24,6 @@ public class MixinBlockBufferBuilderStorage {
     public void init(CallbackInfo callbackInfo) {
         RenderLayer renderLayer = RenderSubstitute.FXCR_LAYER;
         BufferBuilder builder = new BufferBuilder(renderLayer.getExpectedBufferSize());
-        builders.put(renderLayer, builder);
+        this.builders.put(renderLayer, builder);
     }
 }
