@@ -2,7 +2,7 @@ package dev.zebulon.fxcr.mixin;
 
 import dev.zebulon.fxcr.FxcrMod;
 import io.netty.util.internal.StringUtil;
-import net.minecraft.client.options.GameOptions;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

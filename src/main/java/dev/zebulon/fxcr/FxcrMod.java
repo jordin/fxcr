@@ -6,8 +6,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Material;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.options.CyclingOption;
-import net.minecraft.client.options.Option;
+import net.minecraft.client.option.CyclingOption;
+import net.minecraft.client.option.Option;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -25,6 +25,7 @@ public class FxcrMod implements ModInitializer {
             return;
         }
 
+        // should we just mark the chunks as dirty?
         MinecraftClient.getInstance().worldRenderer.reload();
     });
 
