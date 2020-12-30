@@ -10,6 +10,7 @@
     "Jordin"
   ],
   "contact": {
+    "sources": "https://github.com/vlakreeh/fxcr"
   },
   "license": "CC0-1.0",
   "icon": "assets/fxcr/icon.png",
