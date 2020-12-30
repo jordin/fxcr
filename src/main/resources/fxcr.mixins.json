@@ -16,6 +16,7 @@
     "MixinVideoOptionsScreen",
     "MixinGameOptions"
   ],
+  "refmap": "mixins.fxcr.refmap.json",
   "injectors": {
     "defaultRequire": 1
   }

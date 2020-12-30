@@ -23,6 +23,10 @@ dependencies {
     // You may need to force-disable transitiveness on them.
 }
 
+minecraft {
+    refmapName = "mixins.fxcr.refmap.json"
+}
+
 processResources {
     inputs.property "version", project.version
 

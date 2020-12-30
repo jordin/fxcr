@@ -19,7 +19,7 @@ public abstract class MixinChunkBuilderInnerBuiltChunk {
     @Final
     private Map<RenderLayer, VertexBuffer> buffers;
 
-    @Inject(method = "<init>()V", at = @At("RETURN"))
+    @Inject(method = "<init>", at = @At("RETURN"))
     public void init(ChunkBuilder outer, CallbackInfo ci) {
         this.buffers.put(RenderSubstitute.FXCR_LAYER, new VertexBuffer());
     }
