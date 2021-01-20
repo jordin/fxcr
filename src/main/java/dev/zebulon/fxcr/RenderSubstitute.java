@@ -55,6 +55,7 @@ public class RenderSubstitute {
         final int y = ChunkSectionPos.getLocalCoord(blockPos.getY());
         final int z = ChunkSectionPos.getLocalCoord(blockPos.getZ());
 
+        // FIXME: should we push, translate, render, then pop?
         matrixStack.translate(x, y, z);
         blockRendererDispatcher.renderBlock(transformBlockState(blockState), blockPos, BLOCK_VIEW, matrixStack,
                 bufferBuilder, true, random);
