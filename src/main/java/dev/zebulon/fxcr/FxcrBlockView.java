@@ -53,13 +53,13 @@ public class FxcrBlockView implements BlockRenderView {
     }
 
     @Override
-    public int getSectionCount() {
-        return this.vanillaBlockView.getSectionCount();
+    public int getHeight() {
+        return this.vanillaBlockView.getHeight();
     }
 
     @Override
-    public int getBottomSectionLimit() {
-        return this.vanillaBlockView.getBottomSectionLimit();
+    public int getBottomY() {
+        return this.vanillaBlockView.getBottomY();
     }
 
     @Override
