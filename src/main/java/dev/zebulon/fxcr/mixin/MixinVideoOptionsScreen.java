@@ -1,7 +1,7 @@
 package dev.zebulon.fxcr.mixin;
 
 import dev.zebulon.fxcr.FxcrMod;
-import net.minecraft.client.gui.screen.VideoOptionsScreen;
+import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
 import net.minecraft.client.option.Option;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
