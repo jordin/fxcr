@@ -1,48 +1,48 @@
 {
     "variants": {
         "facing=north,type=single": {
-            "model": "fxcr:block/fast_trapped_chest_model"
+            "model": "fxcr:block/fast_trapped_chest_single"
         },
         "facing=east,type=single": {
-            "model": "fxcr:block/fast_trapped_chest_model",
+            "model": "fxcr:block/fast_trapped_chest_single",
             "y": 90
         },
         "facing=south,type=single": {
-            "model": "fxcr:block/fast_trapped_chest_model",
+            "model": "fxcr:block/fast_trapped_chest_single",
             "y": 180
         },
         "facing=west,type=single": {
-            "model": "fxcr:block/fast_trapped_chest_model",
+            "model": "fxcr:block/fast_trapped_chest_single",
             "y": 270
         },
         "facing=north,type=left": {
-            "model": "fxcr:block/fast_trapped_chest_left_model"
+            "model": "fxcr:block/fast_trapped_chest_left"
         },
         "facing=east,type=left": {
-            "model": "fxcr:block/fast_trapped_chest_left_model",
+            "model": "fxcr:block/fast_trapped_chest_left",
             "y": 90
         },
         "facing=south,type=left": {
-            "model": "fxcr:block/fast_trapped_chest_left_model",
+            "model": "fxcr:block/fast_trapped_chest_left",
             "y": 180
         },
         "facing=west,type=left": {
-            "model": "fxcr:block/fast_trapped_chest_left_model",
+            "model": "fxcr:block/fast_trapped_chest_left",
             "y": 270
         },
         "facing=north,type=right": {
-            "model": "fxcr:block/fast_trapped_chest_right_model"
+            "model": "fxcr:block/fast_trapped_chest_right"
         },
         "facing=east,type=right": {
-            "model": "fxcr:block/fast_trapped_chest_right_model",
+            "model": "fxcr:block/fast_trapped_chest_right",
             "y": 90
         },
         "facing=south,type=right": {
-            "model": "fxcr:block/fast_trapped_chest_right_model",
+            "model": "fxcr:block/fast_trapped_chest_right",
             "y": 180
         },
         "facing=west,type=right": {
-            "model": "fxcr:block/fast_trapped_chest_right_model",
+            "model": "fxcr:block/fast_trapped_chest_right",
             "y": 270
         }
     }
