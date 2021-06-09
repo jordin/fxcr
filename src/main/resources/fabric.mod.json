@@ -5,10 +5,8 @@
 
   "name": "Fast Approximate Chest Rendering",
   "description": "Renders chests with approximate models to optimize",
-  "authors": [
-    "Zebulon",
-    "Jordin"
-  ],
+  "authors": ["Zebulon", "Jordin"],
+  "accessWidener": "fxcr.accesswidener",
   "contact": {
     "sources": "https://github.com/vlakreeh/fxcr"
   },
@@ -16,13 +14,9 @@
   "icon": "assets/fxcr/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "dev.zebulon.fxcr.FxcrMod"
-    ]
+    "main": ["dev.zebulon.fxcr.FxcrMod"]
   },
-  "mixins": [
-    "fxcr.mixins.json"
-  ],
+  "mixins": ["fxcr.mixins.json"],
 
   "depends": {
     "fabricloader": ">=0.7.6",

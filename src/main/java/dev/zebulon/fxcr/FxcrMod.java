@@ -29,8 +29,10 @@ public class FxcrMod implements ModInitializer {
         MinecraftClient.getInstance().worldRenderer.reload();
     });
 
-    public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
-    public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+    public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(
+            FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+    public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(
+            FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
 
     @Override
     public void onInitialize() {

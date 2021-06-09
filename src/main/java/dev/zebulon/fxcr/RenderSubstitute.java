@@ -1,6 +1,7 @@
 package dev.zebulon.fxcr;
 
 import dev.zebulon.fxcr.mixin.MixinExtChunkBuilderChunkData;
+import dev.zebulon.fxcr.mixin.MixinExtRenderLayer;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.MinecraftClient;
@@ -23,18 +24,21 @@ public class RenderSubstitute {
 
     public static BlockState[] BLOCK_STATE_CACHE = new BlockState[64];
 
-    public static final RenderLayer FXCR_LAYER = RenderLayer.of("fxcr",
+    public static final RenderLayer FXCR_LAYER = MixinExtRenderLayer.invokeOfFxcr("fxcr",
             VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL, VertexFormat.DrawMode.QUADS, 0x2000, true, false,
-            RenderLayer.MultiPhaseParameters.builder().shadeModel(new RenderPhase.ShadeModel(true))
+            RenderLayer.MultiPhaseParameters.builder()
+                    // .shadeModel(new RenderPhase.ShadeModel(true))
+                    .shader(new RenderPhase.Shader(GameRenderer::getRenderTypeSolidShader))
                     .lightmap(new RenderPhase.Lightmap(true)).cull(new RenderPhase.Cull(false))
                     .texture(new RenderPhase.Texture(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, false, true)).build(true));
 
     private static final int TRAPPED_CHEST_FLAG = 1 << 5;
 
     public static void onRender(final BlockPos blockPos, final BlockState blockState,
-                                final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
-                                final Random random, final MatrixStack matrixStack) {
-        // FIXME: do we need this check? we only call this function on chests and trapped chests
+            final BlockBufferBuilderStorage chunkRenderTask, final ChunkBuilder.ChunkData chunkData,
+            final Random random, final MatrixStack matrixStack) {
+        // FIXME: do we need this check? we only call this function on chests and
+        // trapped chests
         if (RenderLayers.getBlockLayer(blockState) != RenderLayer.getSolid()) {
             return;
         }
@@ -77,11 +81,11 @@ public class RenderSubstitute {
 
         if (cached == null) {
             if ((index & TRAPPED_CHEST_FLAG) == 0) {
-                BLOCK_STATE_CACHE[index] = FxcrMod.FAST_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
-                        .with(ChestBlock.CHEST_TYPE, chestType);
+                BLOCK_STATE_CACHE[index] = FxcrMod.FAST_CHEST_BLOCK.getDefaultState()
+                        .with(HorizontalFacingBlock.FACING, direction).with(ChestBlock.CHEST_TYPE, chestType);
             } else {
-                BLOCK_STATE_CACHE[index] = FxcrMod.FAST_TRAPPED_CHEST_BLOCK.getDefaultState().with(HorizontalFacingBlock.FACING, direction)
-                        .with(ChestBlock.CHEST_TYPE, chestType);
+                BLOCK_STATE_CACHE[index] = FxcrMod.FAST_TRAPPED_CHEST_BLOCK.getDefaultState()
+                        .with(HorizontalFacingBlock.FACING, direction).with(ChestBlock.CHEST_TYPE, chestType);
             }
 
             cached = BLOCK_STATE_CACHE[index];

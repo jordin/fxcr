@@ -1,10 +1,10 @@
 plugins {
-    id 'fabric-loom' version '0.6-SNAPSHOT'
+    id 'fabric-loom' version '0.8-SNAPSHOT'
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+// sourceCompatibility = JavaVersion.VERSION_8
+// targetCompatibility = JavaVersion.VERSION_8
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -25,6 +25,7 @@ dependencies {
 
 minecraft {
     refmapName = "mixins.fxcr.refmap.json"
+    accessWidener = file("src/main/resources/fxcr.accesswidener")
 }
 
 processResources {
