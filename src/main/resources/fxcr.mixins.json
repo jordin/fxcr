@@ -8,7 +8,10 @@
     "MixinBlockModels",
     "MixinChestBlock",
     "MixinGameOptions",
-    "MixinVideoOptionsScreen"
+    "MixinVideoOptionsScreen",
+    "MixinChestBlockEntity",
+    "MixinChestLidAnimatorExt",
+    "vanilla.MixinChunkBuilderBuiltChunkRebuildTask"
   ],
   "refmap": "mixins.fxcr.refmap.json",
   "injectors": {

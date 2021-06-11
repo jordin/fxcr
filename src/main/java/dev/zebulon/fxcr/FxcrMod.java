@@ -9,9 +9,16 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.CyclingOption;
 import net.minecraft.client.option.Option;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 public class FxcrMod implements ModInitializer {
+
+    /**
+     * This is a hack so we know what chest we are currently trying to render.
+     */
+    public static BlockPos CURRENT_POS = BlockPos.ORIGIN;
+
     public static boolean enabled = true;
 
     // Eclipse shows resource leak warnings on all calls for getInstance, ugh
