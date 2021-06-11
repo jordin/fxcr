@@ -16,12 +16,12 @@ import java.io.PrintWriter;
 @Mixin(GameOptions.class)
 public abstract class MixinGameOptions {
     @Shadow
-    private static boolean isTrue(String string) {
+    static boolean isTrue(String string) {
         throw new IllegalStateException("Mixin shadow method body invoked.");
     }
 
     @Shadow
-    public abstract NbtCompound update(NbtCompound nbt);
+    protected abstract NbtCompound update(NbtCompound nbt);
 
     @Redirect(method = "write()V", at = @At(value = "INVOKE", target = "Ljava/io/PrintWriter;println(Ljava/lang/String;)V", ordinal = 0))
     private void onWritePrintLn(PrintWriter printWriter, String x) {

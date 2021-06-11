@@ -3,18 +3,12 @@
   "minVersion": "0.8",
   "package": "dev.zebulon.fxcr.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
   "client": [
-    "MixinChunkBuilderBuiltChunkRebuildTask",
-    "MixinExtChunkBuilderChunkData",
-    "MixinBlockBufferBuilderStorage",
-    "MixinChunkBuilderInnerBuiltChunk",
-    "MixinWorldRenderer",
-    "MixinMinecraftClient",
     "MixinBlockEntityRenderDispatcher",
-    "MixinVideoOptionsScreen",
+    "MixinBlockModels",
+    "MixinChestBlock",
     "MixinGameOptions",
-    "MixinExtRenderLayer"
+    "MixinVideoOptionsScreen"
   ],
   "refmap": "mixins.fxcr.refmap.json",
   "injectors": {
