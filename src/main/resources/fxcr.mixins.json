@@ -7,10 +7,10 @@
     "MixinBlockEntityRenderDispatcher",
     "MixinBlockModels",
     "MixinChestBlock",
-    "MixinGameOptions",
-    "MixinVideoOptionsScreen",
     "MixinChestBlockEntity",
     "MixinChestLidAnimatorExt",
+    "MixinGameOptions",
+    "MixinVideoOptionsScreen",
     "vanilla.MixinChunkBuilderBuiltChunkRebuildTask"
   ],
   "refmap": "mixins.fxcr.refmap.json",

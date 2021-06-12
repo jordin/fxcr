@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version '0.8-SNAPSHOT'
     id 'maven-publish'
+    id 'org.ajoberstar.grgit' version '4.1.0'
 }
 
 // sourceCompatibility = JavaVersion.VERSION_8
@@ -15,6 +16,25 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    if (Boolean.valueOf(project.use_sodium)) {
+        implementation("me.jellysquid.mods:sodium-fabric") {
+            version {
+                branch = "1.17.x/dev"
+            }
+
+            transitive = false
+        }
+    } else {
+        compileOnly("me.jellysquid.mods:sodium-fabric") {
+            version {
+                branch = "1.17.x/dev"
+            }
+
+            transitive = false
+        }
+    }
+
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"

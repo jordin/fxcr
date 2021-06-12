@@ -16,7 +16,7 @@
   "entrypoints": {
     "main": ["dev.zebulon.fxcr.FxcrMod"]
   },
-  "mixins": ["fxcr.mixins.json"],
+  "mixins": ["fxcr.mixins.json", "fxcr.mixins.sodium.json"],
 
   "depends": {
     "fabricloader": ">=0.7.6",

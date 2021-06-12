@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.zebulon.fxcr.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": ["sodium.MixinChunkRenderRebuildTask", "sodium.MixinMinecraftClient"],
+  "plugin": "dev.zebulon.fxcr.mixin.plugins.SodiumMixinPlugin",
+  "refmap": "mixins.fxcr.refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
