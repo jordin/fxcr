@@ -45,7 +45,7 @@ public class RenderSubstitute {
     }
 
     public static BlockRenderType getRenderType(BlockState state, BlockPos pos) {
-        if (state.getBlock() != Blocks.CHEST) {
+        if (!(state.getBlock() instanceof ChestBlock)) {
             return state.getRenderType();
         }
 

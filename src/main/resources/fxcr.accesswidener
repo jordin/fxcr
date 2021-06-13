@@ -12,3 +12,8 @@ accessible class net/minecraft/client/render/RenderPhase$Target
 accessible class net/minecraft/client/render/RenderPhase$Texture
 accessible class net/minecraft/client/render/RenderPhase$TextureBase
 accessible class net/minecraft/client/render/RenderPhase$Transparency
+accessible class net/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk$RebuildTask
+accessible field net/minecraft/client/render/chunk/ChunkBuilder$ChunkData empty Z
+accessible field net/minecraft/client/render/chunk/ChunkBuilder$ChunkData nonEmptyLayers Ljava/util/Set;
+accessible field net/minecraft/client/render/chunk/ChunkBuilder$ChunkData initializedLayers Ljava/util/Set;
+accessible method net/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk beginBufferBuilding (Lnet/minecraft/client/render/BufferBuilder;)V
