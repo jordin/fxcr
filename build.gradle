@@ -12,6 +12,7 @@ repositories {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/releases/"
     }
+    maven { url 'https://jitpack.io' }
 }
 
 archivesBaseName = project.archives_base_name
@@ -33,19 +34,11 @@ dependencies {
 //    }
 
     if (Boolean.valueOf(project.use_sodium)) {
-        implementation("me.jellysquid.mods:sodium-fabric") {
-            version {
-                branch = "1.17.x/dev"
-            }
-
+        modImplementation("com.github.zebp:sodium-fabric:905debb143") {
             transitive = false
         }
     } else {
-        compileOnly("me.jellysquid.mods:sodium-fabric") {
-            version {
-                branch = "1.17.x/dev"
-            }
-
+        modCompile("com.github.zebp:sodium-fabric:905debb143") {
             transitive = false
         }
     }
