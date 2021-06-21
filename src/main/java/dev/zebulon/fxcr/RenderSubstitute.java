@@ -7,9 +7,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class RenderSubstitute {
     public static BlockState[] BLOCK_STATE_CACHE = new BlockState[64];
@@ -44,6 +41,7 @@ public class RenderSubstitute {
         return cached;
     }
 
+    @SuppressWarnings("all")
     public static BlockRenderType getRenderType(BlockState state, BlockPos pos) {
         if (!(state.getBlock() instanceof ChestBlock)) {
             return state.getRenderType();
