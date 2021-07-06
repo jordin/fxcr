@@ -14,54 +14,59 @@ import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.ChestLidAnimator;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(ChestBlockEntity.class)
 public abstract class MixinChestBlockEntity extends LootableContainerBlockEntity {
+
+    /**
+     * A flag to inform the world renderer that it is important that the chunk mesh is recreated immediately.
+     */
+    private static final int FLAG_IMPORTANT = 0x1;
+
     @Shadow
     @Final
     private ChestLidAnimator lidAnimator;
-    private int rebuildScheduler = 0;
+
+    @Unique
+    private boolean wasPreviouslyAnimating = false;
 
     protected MixinChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
     }
 
+    @SuppressWarnings("all")
     @Inject(method = "clientTick", at = @At("RETURN"))
     private static void clientTickHook(World world, BlockPos pos, BlockState state, ChestBlockEntity blockEntity,
             CallbackInfo ci) {
-        @SuppressWarnings("all")
         MixinChestBlockEntity blockEntityMixin = (MixinChestBlockEntity) (Object) blockEntity;
-
-        if (blockEntityMixin.rebuildScheduler > 0) {
-            blockEntityMixin.rebuildScheduler--;
-            if (blockEntityMixin.rebuildScheduler <= 0)
-                blockEntityMixin.rebuildChunk();
-        }
-
         MixinChestLidAnimatorExt lidAccessorExt = (MixinChestLidAnimatorExt) blockEntityMixin.lidAnimator;
+
+        WorldRenderer worldRenderer = MinecraftClient.getInstance().worldRenderer;
+        BlockState cachedBlockState = blockEntityMixin.getCachedState();
 
         float progress = lidAccessorExt.getProgress();
         float lastProgress = lidAccessorExt.getLastProgress();
-
-        boolean sameProgress = progress == lastProgress;
-
-        if (sameProgress)
-            return;
-
         float progressDelta = progress - lastProgress;
 
-        if (progressDelta > 0 && lastProgress == 0) {
-            blockEntityMixin.rebuildChunk();
-        } else if (progressDelta < 0 && progress == 0) {
-            blockEntityMixin.rebuildScheduler = 1;
+        // Hacky way to force minecraft to rebuild the chunk mesh, so we can re-add our fake chest
+        // block model.
+        if (blockEntityMixin.wasPreviouslyAnimating && progress == 0) {
+            worldRenderer.updateBlock(world, pos, cachedBlockState, cachedBlockState, FLAG_IMPORTANT);
+            blockEntityMixin.wasPreviouslyAnimating = false;
         }
-    }
+        
+        if (progress == lastProgress) {
+            return;
+        }
+        
+        // Flag the chest as previously animation so we don't rebuild the chunk mesh multiple times.
+        blockEntityMixin.wasPreviouslyAnimating = true;
 
-    @Unique
-    @SuppressWarnings("all")
-    private void rebuildChunk() {
-        MinecraftClient.getInstance().worldRenderer.updateBlock(world, pos, getCachedState(), getCachedState(), 1);
+        if (progressDelta > 0 && lastProgress == 0) {
+            worldRenderer.updateBlock(world, pos, cachedBlockState, cachedBlockState, FLAG_IMPORTANT);
+        }
     }
 }
