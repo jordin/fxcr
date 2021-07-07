@@ -9,7 +9,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import java.util.List;
 import java.util.Set;
 
-public class SodiumMixinPlugin implements IMixinConfigPlugin {
+public class VanillaMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
 
@@ -22,7 +22,7 @@ public class SodiumMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return FabricLoader.getInstance().getAllMods().stream()
+        return !FabricLoader.getInstance().getAllMods().stream()
                 .anyMatch((mod) -> mod.getMetadata().getId().equals("sodium"));
     }
 

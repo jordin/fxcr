@@ -3,14 +3,8 @@
   "minVersion": "0.8",
   "package": "dev.zebulon.fxcr.mixin",
   "compatibilityLevel": "JAVA_8",
-  "client": [
-    "MixinBlockEntityRenderDispatcher",
-    "MixinBlockModels",
-    "MixinChestBlock",
-    "MixinChestBlockEntity",
-    "MixinChestLidAnimatorExt",
-    "MixinGameOptions"
-  ],
+  "client": ["vanilla.MixinChunkBuilderBuiltChunkRebuildTask"],
+  "plugin": "dev.zebulon.fxcr.mixin.plugins.VanillaMixinPlugin",
   "refmap": "mixins.fxcr.refmap.json",
   "injectors": {
     "defaultRequire": 1

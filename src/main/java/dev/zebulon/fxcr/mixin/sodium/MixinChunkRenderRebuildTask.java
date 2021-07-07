@@ -30,22 +30,26 @@ public class MixinChunkRenderRebuildTask<T extends ChunkGraphicsState> {
     @Redirect(method = "performBuild", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getRenderType()Lnet/minecraft/block/BlockRenderType;"))
     public BlockRenderType getRenderTypeRedirect(BlockState blockState) {
         return BlockRenderType.INVISIBLE;
-    }
+    }   
 
     @Inject(method = "performBuild", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getRenderType()Lnet/minecraft/block/BlockRenderType;"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void onGetRenderTypeHook(ChunkRenderCacheLocal cache, ChunkBuildBuffers buffers, CancellationSource cancellationSource, CallbackInfoReturnable<ChunkBuildResult<T>> cir, ChunkRenderData.Builder renderData, ChunkOcclusionDataBuilder occluder, ChunkRenderBounds.Builder bounds, WorldSlice slice, int baseX, int baseY, int baseZ, BlockPos.Mutable pos, BlockPos renderOffset, int relY, int relZ, int relX, BlockState blockState) {
-        BlockRenderType renderType = RenderSubstitute.getRenderType(blockState, pos);
+    public void onGetRenderTypeHook(ChunkRenderCacheLocal cache, ChunkBuildBuffers buffers,
+            CancellationSource cancellationSource, CallbackInfoReturnable<ChunkBuildResult> cir,
+            ChunkRenderData.Builder renderData, ChunkOcclusionDataBuilder occluder, ChunkRenderBounds.Builder bounds,
+            WorldSlice slice, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, BlockPos.Mutable blockPos,
+            BlockPos.Mutable offset, int y, int z, int x, BlockState blockState) {
+        BlockRenderType renderType = RenderSubstitute.getRenderType(blockState, blockPos);
 
         if (renderType == BlockRenderType.MODEL) {
             RenderLayer layer = RenderLayers.getBlockLayer(blockState);
 
-            BakedModel model = cache.getBlockModels()
-                    .getModel(blockState);
+            BakedModel model = cache.getBlockModels().getModel(blockState);
 
-            long seed = blockState.getRenderingSeed(pos);
+            long seed = blockState.getRenderingSeed(blockPos);
 
-            if (cache.getBlockRenderer().renderModel(slice, blockState, pos, model, buffers.get(layer), true, seed)) {
-                bounds.addBlock(relX, relY, relZ);
+            if (cache.getBlockRenderer().renderModel(slice, blockState, blockPos, offset, model, buffers.get(layer),
+                    true, seed)) {
+                bounds.addBlock(x, y, z);
             }
         }
     }

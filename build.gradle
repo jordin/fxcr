@@ -34,15 +34,14 @@ dependencies {
 //    }
 
     if (Boolean.valueOf(project.use_sodium)) {
-        modImplementation("com.github.zebp:sodium-fabric:905debb143") {
+        modImplementation("com.github.zebp:sodium-fabric:08bd1f28d8") {
             transitive = false
         }
     } else {
-        modCompile("com.github.zebp:sodium-fabric:905debb143") {
+        modCompile("com.github.zebp:sodium-fabric:08bd1f28d8") {
             transitive = false
         }
     }
-
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
@@ -112,3 +111,5 @@ publishing {
         }
     }
 }
+
+apply from: 'setupRealMcAccount.gradle'
