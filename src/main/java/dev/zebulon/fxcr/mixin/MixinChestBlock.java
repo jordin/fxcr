@@ -19,23 +19,7 @@ import net.minecraft.block.ChestBlock;
 public class MixinChestBlock {
     @Inject(method = "getRenderType", at = @At("HEAD"), cancellable = true)
     public void getRenderType(BlockState state, CallbackInfoReturnable<BlockRenderType> callbackInfo) {
-        if (MinecraftClient.getInstance().world == null) {
-            callbackInfo.setReturnValue(FxcrMod.enabled ? BlockRenderType.MODEL : BlockRenderType.ENTITYBLOCK_ANIMATED);
-            callbackInfo.cancel();
-            return;
-        }
-
-        BlockEntity blockEntity = MinecraftClient.getInstance().world.getBlockEntity(FxcrMod.CURRENT_POS);
-
-        if (blockEntity instanceof ChestBlockEntity chestEntity) {
-            float animationProgress = 0;
-
-            if (chestEntity != null) {
-                animationProgress = chestEntity.getAnimationProgress(MinecraftClient.getInstance().getTickDelta());
-            }
-
-            callbackInfo.setReturnValue(FxcrMod.enabled && animationProgress == 0 ? BlockRenderType.MODEL : BlockRenderType.ENTITYBLOCK_ANIMATED);
-            callbackInfo.cancel();
-        }
+        callbackInfo.setReturnValue(BlockRenderType.MODEL);
+        callbackInfo.cancel();
     }
 }

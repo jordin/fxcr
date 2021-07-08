@@ -1,12 +1,17 @@
 package dev.zebulon.fxcr;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 
 public class RenderSubstitute {
     public static BlockState[] BLOCK_STATE_CACHE = new BlockState[64];
@@ -41,14 +46,8 @@ public class RenderSubstitute {
         return cached;
     }
 
-    @SuppressWarnings("all")
-    public static BlockRenderType getRenderType(BlockState state, BlockPos pos) {
-        if (!(state.getBlock() instanceof ChestBlock)) {
-            return state.getRenderType();
-        }
-
-        assert MinecraftClient.getInstance().world != null;
-        ChestBlockEntity chestEntity = (ChestBlockEntity) MinecraftClient.getInstance().world.getBlockEntity(pos);
+    public static boolean isInAnimationState(BlockView blockView, BlockPos pos) {
+        ChestBlockEntity chestEntity = (ChestBlockEntity) blockView.getBlockEntity(pos);
 
         float animationProgress = 0;
 
@@ -56,6 +55,6 @@ public class RenderSubstitute {
             animationProgress = chestEntity.getAnimationProgress(MinecraftClient.getInstance().getTickDelta());
         }
 
-        return FxcrMod.enabled && animationProgress == 0 ? BlockRenderType.MODEL : BlockRenderType.ENTITYBLOCK_ANIMATED;
+        return FxcrMod.enabled && animationProgress != 0;
     }
 }

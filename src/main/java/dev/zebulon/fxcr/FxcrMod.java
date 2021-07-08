@@ -21,6 +21,11 @@ public class FxcrMod implements ModInitializer {
 
     public static boolean enabled = true;
 
+    public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(
+            FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+    public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(
+            FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+
     // Eclipse shows resource leak warnings on all calls for getInstance, ugh
     @SuppressWarnings("all")
     public static final Option FXCR_ENABLED_OPTION = CyclingOption.create("fxcr.enabled", (gameOptions) -> {
@@ -35,11 +40,6 @@ public class FxcrMod implements ModInitializer {
         // should we just mark the chunks as dirty?
         MinecraftClient.getInstance().worldRenderer.reload();
     });
-
-    public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(
-            FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
-    public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(
-            FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
 
     @Override
     public void onInitialize() {
