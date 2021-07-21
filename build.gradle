@@ -30,11 +30,11 @@ dependencies {
     }
 
     if (Boolean.valueOf(project.use_sodium)) {
-        modImplementation("com.github.zebp:sodium-fabric:08bd1f28d8") {
+        modImplementation("com.github.zebp:sodium-fabric:1.17.x~dev-SNAPSHOT") {
             transitive = false
         }
     } else {
-        modCompileOnly("com.github.zebp:sodium-fabric:08bd1f28d8") {
+        modCompileOnly("com.github.zebp:sodium-fabric:1.17.x~dev-SNAPSHOT") {
             transitive = false
         }
     }

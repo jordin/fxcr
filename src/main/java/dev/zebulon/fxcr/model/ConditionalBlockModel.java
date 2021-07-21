@@ -110,8 +110,8 @@ public class ConditionalBlockModel implements BakedModel, FabricBakedModel {
     }
 
     @Override
-    public Sprite getSprite() {
-        return ((BakedModel) original).getSprite();
+    public Sprite getParticleSprite() {
+        return ((BakedModel) original).getParticleSprite();
     }
 
     @Override
