@@ -9,7 +9,8 @@
     "MixinChestBlock",
     "MixinChestBlockEntity",
     "MixinChestLidAnimatorExt",
-    "MixinGameOptions"
+    "MixinGameOptions",
+    "MixinModelLoader"
   ],
   "refmap": "mixins.fxcr.refmap.json",
   "injectors": {

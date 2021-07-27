@@ -13,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 public class FxcrMod implements ModInitializer {
-
     /**
      * This is a hack so we know what chest we are currently trying to render.
      */
@@ -21,8 +20,11 @@ public class FxcrMod implements ModInitializer {
 
     public static boolean enabled = true;
 
+    public static final Identifier FAST_CHEST_BLOCK_ID = new Identifier("fxcr", "fast_chest");
     public static final FastChestBlock FAST_CHEST_BLOCK = new FastChestBlock(
             FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
+
+    public static final Identifier FAST_TRAPPED_CHEST_BLOCK_ID = new Identifier("fxcr", "fast_trapped_chest");
     public static final FastTrappedChestBlock FAST_TRAPPED_CHEST_BLOCK = new FastTrappedChestBlock(
             FabricBlockSettings.of(Material.WOOD).hardness(4.0f));
 
@@ -43,7 +45,5 @@ public class FxcrMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Registry.register(Registry.BLOCK, new Identifier("fxcr", "fast_chest"), FAST_CHEST_BLOCK);
-        Registry.register(Registry.BLOCK, new Identifier("fxcr", "fast_trapped_chest"), FAST_TRAPPED_CHEST_BLOCK);
     }
 }
