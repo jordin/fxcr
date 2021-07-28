@@ -21,6 +21,6 @@ public class MixinBlockRenderer {
     public void renderModelFxcrHook(BlockRenderView world, BlockState state, BlockPos pos, BlockPos origin,
             BakedModel model, ChunkModelBuilder buffers, boolean cull, long seed,
             CallbackInfoReturnable<Boolean> callbackInfo) {
-        ConditionalBlockModel.CURRENT_MODEL_INFO_THREAD_LOCAL.set(new Pair<BlockView, BlockPos>(world, pos));
+        ConditionalBlockModel.CURRENT_MODEL_POSITION_THREAD_LOCAL.set(pos);
     }
 }

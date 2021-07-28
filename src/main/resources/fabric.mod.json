@@ -14,7 +14,6 @@
   "icon": "assets/fxcr/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["dev.zebulon.fxcr.FxcrMod"],
     "modmenu": [ "dev.zebulon.fxcr.FxcrModMenuApiImpl" ]
   },
   "mixins": ["fxcr.mixins.json", "fxcr.mixins.sodium.json"],

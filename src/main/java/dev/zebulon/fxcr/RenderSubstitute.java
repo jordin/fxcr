@@ -16,7 +16,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 
 public class RenderSubstitute {
-    public static ModelIdentifier[] MODEL_IDENTIFIER_CACHE = new ModelIdentifier[64];
+    private final static ModelIdentifier[] MODEL_IDENTIFIER_CACHE = new ModelIdentifier[64];
 
     private static final int TRAPPED_CHEST_FLAG = 1 << 5;
 
@@ -34,13 +34,13 @@ public class RenderSubstitute {
         ModelIdentifier cached = MODEL_IDENTIFIER_CACHE[index];
 
         if (cached == null) {
+            BlockState translatedBlockState = FxcrMod.FAST_CHEST_BLOCK.getDefaultState()
+                    .with(HorizontalFacingBlock.FACING, direction)
+                    .with(ChestBlock.CHEST_TYPE, chestType);
+
             if ((index & TRAPPED_CHEST_FLAG) == 0) {
-                BlockState translatedBlockState = FxcrMod.FAST_CHEST_BLOCK.getDefaultState()
-                        .with(HorizontalFacingBlock.FACING, direction).with(ChestBlock.CHEST_TYPE, chestType);
                 MODEL_IDENTIFIER_CACHE[index] = BlockModels.getModelId(FxcrMod.FAST_CHEST_BLOCK_ID, translatedBlockState);
             } else {
-                BlockState translatedBlockState = FxcrMod.FAST_TRAPPED_CHEST_BLOCK.getDefaultState()
-                        .with(HorizontalFacingBlock.FACING, direction).with(ChestBlock.CHEST_TYPE, chestType);
                 MODEL_IDENTIFIER_CACHE[index] = BlockModels.getModelId(FxcrMod.FAST_TRAPPED_CHEST_BLOCK_ID, translatedBlockState);
             }
 
@@ -53,12 +53,12 @@ public class RenderSubstitute {
     public static boolean isInAnimationState(BlockView blockView, BlockPos pos) {
         ChestBlockEntity chestEntity = (ChestBlockEntity) blockView.getBlockEntity(pos);
 
-        float animationProgress = 0;
+        float animationProgress = 0.0f;
 
         if (chestEntity != null) {
             animationProgress = chestEntity.getAnimationProgress(MinecraftClient.getInstance().getTickDelta());
         }
 
-        return FxcrMod.enabled && animationProgress != 0;
+        return FxcrMod.enabled && animationProgress != 0.0f;
     }
 }

@@ -10,6 +10,7 @@
     "MixinChestBlockEntity",
     "MixinChestLidAnimatorExt",
     "MixinGameOptions",
+    "MixinMinecraftClient",
     "MixinModelLoader"
   ],
   "refmap": "mixins.fxcr.refmap.json",

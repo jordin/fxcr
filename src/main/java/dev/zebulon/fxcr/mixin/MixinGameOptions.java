@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 
 @Mixin(GameOptions.class)
 public abstract class MixinGameOptions {
+    @SuppressWarnings("unused")
     @Shadow
     static boolean isTrue(String string) {
         throw new IllegalStateException("Mixin shadow method body invoked.");

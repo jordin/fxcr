@@ -15,30 +15,33 @@ import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class ConditionalBlockModel implements BakedModel, FabricBakedModel {
-
     /**
      * The current information about the model being rendered.
      */
-    public static ThreadLocal<Pair<BlockView, BlockPos>> CURRENT_MODEL_INFO_THREAD_LOCAL = new ThreadLocal<>();
+    public static final ThreadLocal<BlockPos> CURRENT_MODEL_POSITION_THREAD_LOCAL = new ThreadLocal<>();
+
+    public static ClientWorld clientWorld;
 
     /**.
      * The original block model we will use when we are not replacing it a FXCR model. In the
      * chest's case it will render as invisible.
      */
-    private FabricBakedModel original;
+    private final FabricBakedModel original;
 
     /**
      * The model FXCR uses for optimized rendering.
      */
-    private FabricBakedModel replacement;
+    private final FabricBakedModel replacement;
 
     public ConditionalBlockModel(FabricBakedModel original, FabricBakedModel replacement) {
         this.original = original;
@@ -71,14 +74,14 @@ public class ConditionalBlockModel implements BakedModel, FabricBakedModel {
      */
     @Override
     public List<BakedQuad> getQuads(BlockState state, Direction face, Random random) {
-        Pair<BlockView, BlockPos> info = CURRENT_MODEL_INFO_THREAD_LOCAL.get();
+        BlockPos blockPos = CURRENT_MODEL_POSITION_THREAD_LOCAL.get();
 
         // TODO: Figure out why this is ever true. (Data race???)
-        if (info == null) {
+        if (clientWorld == null || blockPos == null) {
             return ImmutableList.of();
         }
 
-        if (RenderSubstitute.isInAnimationState(info.getLeft(), info.getRight())) {
+        if (RenderSubstitute.isInAnimationState(clientWorld, blockPos)) {
             return ((BakedModel) this.original).getQuads(state, face, random);
         } else {
             return ((BakedModel) this.replacement).getQuads(state, face, random);
@@ -123,5 +126,4 @@ public class ConditionalBlockModel implements BakedModel, FabricBakedModel {
     public ModelOverrideList getOverrides() {
         return ModelOverrideList.EMPTY;
     }
-
 }

@@ -1,7 +1,6 @@
 package dev.zebulon.fxcr.screen;
 
 import dev.zebulon.fxcr.FxcrMod;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -17,7 +16,7 @@ public class FxcrConfigScreen extends Screen {
     protected void init() {
         super.init();
 
-        ClickableWidget widget = FxcrMod.FXCR_ENABLED_OPTION.createButton(MinecraftClient.getInstance().options, 10, 10, 100);
+        ClickableWidget widget = FxcrMod.FXCR_ENABLED_OPTION.createButton(this.client.options, 10, 10, 100);
 
         this.addDrawableChild(widget);
     }

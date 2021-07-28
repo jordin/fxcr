@@ -25,7 +25,7 @@ public abstract class MixinBlockEntityRenderDispatcher {
             ChestBlockEntity chestEntity = (ChestBlockEntity) blockEntity;
             float animationProgress = chestEntity.getAnimationProgress(MinecraftClient.getInstance().getTickDelta());
 
-            if (animationProgress == 0) {
+            if (animationProgress == 0.0f) {
                 cir.setReturnValue(null);
             }
         }

@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 
 @Mixin(ChestBlockEntity.class)
 public abstract class MixinChestBlockEntity extends LootableContainerBlockEntity {
-
     /**
      * A flag to inform the world renderer that it is important that the chunk mesh is recreated immediately.
      */
@@ -33,6 +32,7 @@ public abstract class MixinChestBlockEntity extends LootableContainerBlockEntity
     @Unique
     private boolean wasPreviouslyAnimating = false;
 
+    @SuppressWarnings("unused")
     protected MixinChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
     }
