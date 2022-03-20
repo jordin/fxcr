@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.zebulon.fxcr.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "client": ["sodium.MixinBlockRenderer"],
   "plugin": "dev.zebulon.fxcr.mixin.plugins.SodiumMixinPlugin",
   "refmap": "mixins.fxcr.refmap.json",

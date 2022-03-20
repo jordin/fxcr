@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.8-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
     id 'maven-publish'
     id 'org.ajoberstar.grgit' version '4.1.0'
 }
@@ -19,22 +19,26 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation("com.terraformersmc:modmenu:2.0.2") {
+    modImplementation("com.terraformersmc:modmenu:3.1.0") {
         transitive = false
     }
 
     if (Boolean.valueOf(project.use_sodium)) {
-        modImplementation("com.github.zebp:sodium-fabric:1.17.x~dev-SNAPSHOT") {
-            transitive = false
-        }
+        modImplementation ('com.github.CaffeineMC:sodium-fabric:mc1.18.2-0.4.1')
     } else {
-        modCompileOnly("com.github.zebp:sodium-fabric:1.17.x~dev-SNAPSHOT") {
+        modCompileOnly ('com.github.CaffeineMC:sodium-fabric:mc1.18.2-0.4.1') {
             transitive = false
         }
     }
@@ -46,9 +50,11 @@ dependencies {
     // You may need to force-disable transitiveness on them.
 }
 
-minecraft {
-    refmapName = "mixins.fxcr.refmap.json"
-    accessWidener = file("src/main/resources/fxcr.accesswidener")
+loom {
+    accessWidenerPath = file("src/main/resources/fxcr.accesswidener")
+    mixin {
+        defaultRefmapName = "mixins.fxcr.refmap.json"
+    }
 }
 
 processResources {

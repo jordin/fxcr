@@ -11,7 +11,7 @@ import net.minecraft.block.ChestBlock;
 
 @Mixin(ChestBlock.class)
 @SuppressWarnings("all")
-public class MixinChestBlock {
+public abstract class MixinChestBlock {
     @Inject(method = "getRenderType", at = @At("HEAD"), cancellable = true)
     public void getRenderType(BlockState state, CallbackInfoReturnable<BlockRenderType> callbackInfo) {
         callbackInfo.setReturnValue(BlockRenderType.MODEL);

@@ -20,7 +20,7 @@ import net.minecraft.client.render.block.BlockModels;
 import net.minecraft.client.render.model.BakedModel;
 
 @Mixin(BlockModels.class)
-public class MixinBlockModels {
+public abstract class MixinBlockModels {
     @Shadow
     @Final
     private BakedModelManager modelManager;
