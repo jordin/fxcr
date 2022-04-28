@@ -51,14 +51,16 @@ public class RenderSubstitute {
     }
 
     public static boolean isInAnimationState(BlockView blockView, BlockPos pos) {
-        ChestBlockEntity chestEntity = (ChestBlockEntity) blockView.getBlockEntity(pos);
+        if (blockView.getBlockEntity(pos) instanceof ChestBlockEntity chestBlockEntity) {
+            float animationProgress = 0.0f;
 
-        float animationProgress = 0.0f;
+            if (chestBlockEntity != null) {
+                animationProgress = chestBlockEntity.getAnimationProgress(1);
+            }
 
-        if (chestEntity != null) {
-            animationProgress = chestEntity.getAnimationProgress(MinecraftClient.getInstance().getTickDelta());
+            return FxcrMod.enabled && animationProgress != 0.0f;
         }
 
-        return FxcrMod.enabled && animationProgress != 0.0f;
+        return false;
     }
 }

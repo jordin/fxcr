@@ -1,5 +1,6 @@
 package dev.zebulon.fxcr.mixin;
 
+import net.minecraft.block.Block;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,17 +21,9 @@ import net.minecraft.world.World;
 
 @Mixin(ChestBlockEntity.class)
 public abstract class MixinChestBlockEntity extends LootableContainerBlockEntity {
-    /**
-     * A flag to inform the world renderer that it is important that the chunk mesh is recreated immediately.
-     */
-    private static final int FLAG_IMPORTANT = 0x1;
-
     @Shadow
     @Final
     private ChestLidAnimator lidAnimator;
-
-    @Unique
-    private boolean wasPreviouslyAnimating = false;
 
     @SuppressWarnings("unused")
     protected MixinChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
@@ -39,8 +32,7 @@ public abstract class MixinChestBlockEntity extends LootableContainerBlockEntity
 
     @SuppressWarnings("all")
     @Inject(method = "clientTick", at = @At("RETURN"))
-    private static void clientTickHook(World world, BlockPos pos, BlockState state, ChestBlockEntity blockEntity,
-            CallbackInfo ci) {
+    private static void clientTickHook(World world, BlockPos pos, BlockState state, ChestBlockEntity blockEntity, CallbackInfo ci) {
         MixinChestBlockEntity blockEntityMixin = (MixinChestBlockEntity) (Object) blockEntity;
         MixinChestLidAnimatorExt lidAccessorExt = (MixinChestLidAnimatorExt) blockEntityMixin.lidAnimator;
 
@@ -49,24 +41,16 @@ public abstract class MixinChestBlockEntity extends LootableContainerBlockEntity
 
         float progress = lidAccessorExt.getProgress();
         float lastProgress = lidAccessorExt.getLastProgress();
-        float progressDelta = progress - lastProgress;
 
-        // Hacky way to force minecraft to rebuild the chunk mesh, so we can re-add our fake chest
-        // block model.
-        if (blockEntityMixin.wasPreviouslyAnimating && progress == 0) {
-            worldRenderer.updateBlock(world, pos, cachedBlockState, cachedBlockState, FLAG_IMPORTANT);
-            blockEntityMixin.wasPreviouslyAnimating = false;
-        }
-        
-        if (progress == lastProgress) {
-            return;
-        }
-        
-        // Flag the chest as previously animation so we don't rebuild the chunk mesh multiple times.
-        blockEntityMixin.wasPreviouslyAnimating = true;
+        // Hacky way to force minecraft to rebuild the chunk mesh, so we can re-add our fake chest block model.
 
-        if (progressDelta > 0 && lastProgress == 0) {
-            worldRenderer.updateBlock(world, pos, cachedBlockState, cachedBlockState, FLAG_IMPORTANT);
+        boolean lidOpening = lastProgress > progress && progress == 0;
+        boolean lidClosing = lastProgress < progress && lastProgress == 0;
+
+        boolean lidTransitioning = lidOpening || lidClosing;
+
+        if (lidTransitioning) {
+            worldRenderer.updateBlock(world, pos, cachedBlockState, cachedBlockState, Block.REDRAW_ON_MAIN_THREAD);
         }
     }
 }
