@@ -31,23 +31,21 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation("com.terraformersmc:modmenu:3.1.0") {
-        transitive = false
-    }
+    modImplementation "com.terraformersmc:modmenu:3.2.2"
 
     if (Boolean.valueOf(project.use_sodium)) {
-        modImplementation ('com.github.CaffeineMC:sodium-fabric:mc1.18.2-0.4.1')
+        modImplementation "com.github.CaffeineMC:sodium-fabric:mc1.18.2-0.4.1"
+
+        modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     } else {
-        modCompileOnly ('com.github.CaffeineMC:sodium-fabric:mc1.18.2-0.4.1') {
+        modCompileOnly("com.github.CaffeineMC:sodium-fabric:mc1.18.2-0.4.1") {
             transitive = false
         }
+
+        modImplementation fabricApi.module("fabric-object-builder-api-v1", project.fabric_version)
+        modImplementation fabricApi.module("fabric-registry-sync-v0", project.fabric_version)
+        modImplementation fabricApi.module("fabric-renderer-indigo", project.fabric_version)
     }
-
-    // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-    // You may need to force-disable transitiveness on them.
 }
 
 loom {
