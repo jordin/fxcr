@@ -36,6 +36,7 @@ public abstract class MixinGameOptions {
         NbtCompound updated = update(nbt);
         String enabledStr = updated.getString("fxcrEnabled");
         FxcrMod.enabled = StringUtil.isNullOrEmpty(enabledStr) || isTrue(enabledStr);
+        FxcrMod.FXCR_ENABLED_OPTION.setValue(FxcrMod.enabled);
         return updated;
     }
 }

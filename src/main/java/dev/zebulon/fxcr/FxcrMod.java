@@ -6,8 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.CyclingOption;
-import net.minecraft.client.option.Option;
+import net.minecraft.client.option.SimpleOption;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -25,10 +24,8 @@ public class FxcrMod {
 
     // Eclipse shows resource leak warnings on all calls for getInstance, ugh
     @SuppressWarnings("all")
-    public static final Option FXCR_ENABLED_OPTION = CyclingOption.create("fxcr.enabled", (gameOptions) -> {
-        return enabled;
-    }, (gameOptions, option, boolean_) -> {
-        enabled = !enabled;
+    public static final SimpleOption<Boolean> FXCR_ENABLED_OPTION = SimpleOption.ofBoolean("fxcr.enabled", true, (value) -> {
+        enabled = value;
 
         if (MinecraftClient.getInstance().world == null) {
             return;

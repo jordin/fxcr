@@ -1,7 +1,6 @@
 package dev.zebulon.fxcr.model;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableList;
@@ -20,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;

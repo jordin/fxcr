@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "id": "fxcr",
-  "version": "0.2.4",
+  "version": "0.2.5",
 
   "name": "Fast Approximate Chest Rendering",
   "description": "Renders chests with approximate models to optimize",
   "authors": ["Zebulon", "Jordin"],
   "accessWidener": "fxcr.accesswidener",
   "contact": {
-    "sources": "https://github.com/zebp/fxcr"
+    "sources": "https://github.com/Jordin/fxcr"
   },
   "license": "CC0-1.0",
   "icon": "assets/fxcr/icon.png",
