@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "fxcr",
-  "version": "0.2.5",
+  "version": "0.2.6",
 
   "name": "Fast Approximate Chest Rendering",
   "description": "Renders chests with approximate models to optimize",
