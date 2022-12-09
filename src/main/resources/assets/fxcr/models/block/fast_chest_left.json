@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
-    "0": "entity/chest/normal_left",
-    "particle": "entity/chest/normal_left"
+    "0": "fxcr:block/chest/normal_left",
+    "particle": "fxcr:block/chest/normal_left"
   },
   "elements": [
     {

@@ -37,17 +37,17 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "com.terraformersmc:modmenu:4.0.5"
+    modImplementation "com.terraformersmc:modmenu:5.0.1"
 
     if (Boolean.valueOf(project.use_sodium)) {
-        modImplementation "maven.modrinth:sodium:mc1.19-0.4.2"
+        modImplementation "maven.modrinth:sodium:mc1.19.2-0.4.4"
 
         implementation "io.github.douira:glsl-transformer:0.25.2"
         implementation "org.joml:joml:1.10.4"
 
         modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     } else {
-        modCompileOnly("maven.modrinth:sodium:mc1.19-0.4.2") {
+        modCompileOnly("maven.modrinth:sodium:mc1.19.2-0.4.4") {
             transitive = false
         }
 
@@ -58,7 +58,6 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/fxcr.accesswidener")
     mixin {
         defaultRefmapName = "mixins.fxcr.refmap.json"
     }

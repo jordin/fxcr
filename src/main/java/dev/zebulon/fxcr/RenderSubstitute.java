@@ -1,13 +1,8 @@
 package dev.zebulon.fxcr;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.block.BlockModels;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.state.property.Properties;
@@ -52,11 +47,7 @@ public class RenderSubstitute {
 
     public static boolean isInAnimationState(BlockView blockView, BlockPos pos) {
         if (blockView.getBlockEntity(pos) instanceof ChestBlockEntity chestBlockEntity) {
-            float animationProgress = 0.0f;
-
-            if (chestBlockEntity != null) {
-                animationProgress = chestBlockEntity.getAnimationProgress(1);
-            }
+            float animationProgress = chestBlockEntity.getAnimationProgress(1);
 
             return FxcrMod.enabled && animationProgress != 0.0f;
         }

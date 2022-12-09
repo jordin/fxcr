@@ -1,14 +1,13 @@
 package dev.zebulon.fxcr;
 
 import dev.zebulon.fxcr.block.FastChestBlock;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.SimpleOption;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class FxcrMod {
     public static boolean enabled = true;
@@ -17,7 +16,7 @@ public class FxcrMod {
     public static final Identifier FAST_TRAPPED_CHEST_BLOCK_ID = new Identifier("fxcr", "fast_trapped_chest");
 
     public static final FastChestBlock FAST_CHEST_BLOCK = Registry.register(
-            Registry.BLOCK,
+            Registries.BLOCK,
             FAST_CHEST_BLOCK_ID,
             new FastChestBlock(FabricBlockSettings.of(Material.WOOD).hardness(4.0f))
     );

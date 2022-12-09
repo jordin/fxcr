@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
-    "0": "entity/chest/trapped_right",
-    "particle": "entity/chest/trapped_right"
+    "0": "fxcr:block/chest/trapped_right",
+    "particle": "fxcr:block/chest/trapped_right"
   },
   "elements": [
     {
